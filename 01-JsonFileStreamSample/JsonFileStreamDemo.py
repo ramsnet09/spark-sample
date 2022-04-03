@@ -1,9 +1,6 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import expr
 
-#from lib.logger import Log4j
-
-#https://hackersandslackers.com/structured-streaming-in-pyspark/
 
 if __name__ == "__main__":
     spark = SparkSession \
@@ -23,12 +20,6 @@ if __name__ == "__main__":
 
     selectdf = raw_df.select("AddressLineOne", "AddressLineTwo")
     selectdf.printSchema()
-
-    #writeAddrDF = selectdf.writeStream \
-     #   .format("console") \
-      #  .outputMode("append") \
-       # .start() \
-        #.awaitTermination()
 
     writeOutputDF = selectdf.writeStream \
         .format("json") \
